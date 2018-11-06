@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'pp'
-require 'logger'
 
 
 require 'csvreader'
