@@ -153,7 +153,7 @@ end
 #...
 ```
 
-Note: More aliases for `CsvHuman`, `HXL`? Yes, you use
+Note: More aliases for `CsvHuman`, `HXL`? Yes, you can use
 `CsvHum`, `CSV_HXL`, `CSVHXL` too.
 
 
