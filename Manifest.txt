@@ -1,0 +1,10 @@
+HISTORY.md
+Manifest.txt
+README.md
+Rakefile
+lib/csvhuman.rb
+lib/csvhuman/reader.rb
+lib/csvhuman/version.rb
+test/data/test.csv
+test/helper.rb
+test/test_reader.rb
