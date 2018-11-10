@@ -65,21 +65,6 @@ class CsvHuman
 
 
 
-
-class Column
-   attr_reader  :tag
-
-   def initialize( tag=nil, list: false )
-     @tag  = tag
-     @list = list
-   end
-
-   def tagged?()  @tag.nil? == false; end
-   def list?()    @list; end
-end  # class Column
-
-
-
 attr_reader :header, :tags
 
 def initialize( recs_or_stream )
@@ -106,8 +91,8 @@ def each( &block )
   @recs.each do |values|
     ## pp values
     if @cols.nil?
-      if values.any? { |value| value && value.start_with?('#') }
-        @cols = build_cols( values )
+      if values.any? { |value| value && value.strip.start_with?('#') }
+        @cols = Columns.build( values )
         @tags = values
       else
         @header << values
@@ -119,8 +104,8 @@ def each( &block )
       record = {}
       @cols.each_with_index do |col,i|
         if col.tagged?
-          key   = col.tag
-          value = values[i]
+          key   = col.key
+          value = values[i]   ## todo/fix: use col.tag.typecast( values[i] )
           if col.list?
             record[ key ] ||= []
             record[ key ] << value
@@ -143,55 +128,5 @@ def read() to_a; end # method read
 ### todo/fix:
 ##   add closed? and close
 ##    if self.open used without block (user needs to close file "manually")
-
-
-####
-# helpers
-
-
-def build_cols( values )
-
-  ## "clean" unify/normalize names
-  values = values.map do |value|
-    if value
-      if value.empty?
-        nil     ## make untagged fields nil
-      else
-        ## todo: sort attributes by a-to-z
-        ##  strip / remove all spaces
-        value.strip.gsub('#','')   ## remove leading # - why? why not?
-      end
-    else
-      value   ## keep (nil) as is
-    end
-  end
-
-
-  counts = {}
-  values.each_with_index do |value,i|
-     if value
-       counts[value] ||= []
-       counts[value] << i
-     end
-  end
-  ## pp counts
-
-
-  cols = []
-  values.each do |value|
-    if value
-      count = counts[value]
-      if count.size > 1
-        cols << Column.new( value, list: true )
-      else
-        cols << Column.new( value )
-      end
-    else
-      cols << Column.new
-    end
-  end
-
-  cols
-end
 
 end # class CsvHuman

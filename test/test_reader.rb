@@ -18,6 +18,26 @@ def recs
      [ "Org A", "WASH", "Plains Province" ]]
 end
 
+def recs2
+   [["Organisation", "Cluster", "Province" ],
+     [ "ORG", "#SECTOR", "ADM1" ],
+     [ "Org A", "WASH", "Coastal Province" ],
+     [ "Org B", "Health", "Mountain Province" ],
+     [ "Org C", "Education", "Coastal Province" ],
+     [ "Org A", "WASH", "Plains Province" ]]
+end
+
+
+def expected_recs
+  [{"org"=>"Org A", "sector"=>"WASH",      "adm1"=>"Coastal Province"},
+   {"org"=>"Org B", "sector"=>"Health",    "adm1"=>"Mountain Province"},
+   {"org"=>"Org C", "sector"=>"Education", "adm1"=>"Coastal Province"},
+   {"org"=>"Org A", "sector"=>"WASH",      "adm1"=>"Plains Province"}]
+end
+
+
+
+
 def txt
   <<TXT
   What,,,Who,Where,For whom,
@@ -38,7 +58,10 @@ def test_readme
   end
 
   pp csv.read
-  pp CsvHuman.parse( recs )
+  
+  assert_equal expected_recs, CsvHuman.parse( recs )
+  assert_equal expected_recs, CsvHuman.parse( recs2 )
+
 
   CsvHuman.parse( recs ).each do |rec|
     pp rec

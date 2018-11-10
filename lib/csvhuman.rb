@@ -7,6 +7,8 @@ require 'csvreader'
 
 ## our own code
 require 'csvhuman/version'    # note: let version always go first
+require 'csvhuman/tag'
+require 'csvhuman/column'
 require 'csvhuman/reader'
 
 

@@ -16,8 +16,8 @@ csvhuman library / gem - read tabular data in the CSV Humanitarian eXchange Lang
 [Humanitarian eXchange Language (HXL)](https://github.com/csvspecs/csv-hxl)
 is a (meta data) convention for
 adding agreed on hashtags e.g. `#org,#country,#sex+#targeted,#adm1`
-inline in a (single new line)
-between the header and data
+inline in a (single new line / row)
+between the last header row and the first data row
 for sharing tabular data across organisations
 (during a humanitarian crisis).
 Example:
@@ -156,6 +156,58 @@ end
 Note: More aliases for `CsvHuman`, `HXL`? Yes, you can use
 `CsvHum`, `CSV_HXL`, `CSVHXL` too.
 
+
+
+
+
+## Tag Helpers
+
+**Normalize**. Use `CsvHuman::Tag.normalize` to pretty print or normalize a tag.
+All parts get downcased (lowercased), all attributes sorted by a-to-z,
+all extra or missing hashtags or pluses added or removed
+all extra or missing spaces added or removed. Example:
+
+``` ruby
+HXL::Tag.normalize( "#sector+en" )
+# => "#sector +en"
+HXL::Tag.normalize( "#SECTOR EN" )
+# => "#sector +en"
+HXL::Tag.normalize( "# SECTOR  + #EN " )
+# => "#sector +en"
+HXL::Tag.normalize( "SECTOR EN" )
+# => "#sector +en"
+# ...
+```
+
+
+**Split**. Use `CsvHuman::Tag.split` to split (and normalize) a tag into its parts.
+Example:
+
+``` ruby
+HXL::Tag.split( "#sector+en" )
+# => ["sector", "en"]
+HXL::Tag.split( "#SECTOR EN" )
+# => ["sector", "en"]
+HXL::Tag.split( "# SECTOR  + #EN " )
+# => ["sector", "en"]
+HXL::Tag.split( "SECTOR EN" )
+# => ["sector", "en"]
+
+## sort attributes a-to-z
+HXL::Tag.split( "#affected +f +children" )
+# => ["affected", "children", "f"]
+HXL::Tag.split( "#population +children +affected +m" )
+# => ["population", "affected", "children", "m"]
+HXL::Tag.split( "#population+children+affected+m" )
+# => ["population", "affected", "children", "m"]
+HXL::Tag.split( "#population+#children+#affected+#m" )
+# => ["population", "affected", "children", "m"]
+HXL::Tag.split( "#population #children #affected #m" )
+# => ["population", "affected", "children", "m"]
+HXL::Tag.split( "POPULATION CHILDREN AFFECTED M" )
+# => ["population", "affected", "children", "m"]
+#...
+```
 
 
 
