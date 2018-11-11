@@ -71,7 +71,8 @@ class Tag
         Integer
       elsif attributes.include?( 'date' )   ### todo/check: exists +date?
         Date
-      elsif attributes.include?( 'affected' )
+      elsif attributes.include?( 'affected' ) ||
+            attributes.include?( 'targeted' )
         Integer
       else
         String   ## assume (default to) string

@@ -1,25 +1,15 @@
 # encoding: utf-8
 
-require 'pp'
+require 'csvreader'      ## add all "alternative" shortcut aliases
 
 
-require 'csvreader'
-
-## our own code
-require 'csvhuman/version'    # note: let version always go first
-require 'csvhuman/tag'
-require 'csvhuman/column'
-require 'csvhuman/reader'
+## our own code (without "top-level" shortcuts e.g. "modular version")
+require 'csvhuman/base'
 
 
-
-## add some "alternative" shortcut aliases
+####
+#  add some "alternative" shortcut aliases
 CsvHum  = CsvHuman
 CSV_HXL = CsvHuman
 CSVHXL  = CsvHuman
 HXL     = CsvHuman
-
-
-
-# say hello
-puts CsvHuman.banner     if $DEBUG || (defined?($RUBYCOCO_DEBUG) && $RUBYCOCO_DEBUG)

@@ -79,38 +79,86 @@ resulting in:
   "subsector"    => "Subsector 1",
   "org"          => "Org 1",
   "country"      => "Country 1",
-  "sex+targeted" => ["100", "100"],
+  "sex+targeted" => [100, 100],
   "adm1"         => "Region 1"},
  {"sector+en"    => "Health",
   "subsector"    => "Subsector 2",
   "org"          => "Org 2",
   "country"      => "Country 2",
-  "sex+targeted" => ["", ""],
+  "sex+targeted" => [nil, nil],
   "adm1"         => "Region 2"},
  {"sector+en"    => "Education",
   "subsector"    => "Subsector 3",
   "org"          => "Org 3",
   "country"      => "Country 2",
-  "sex+targeted" => ["250", "300"],
+  "sex+targeted" => [250, 300],
   "adm1"         => "Region 3"},
  {"sector+en"    => "WASH",
   "subsector"    => "Subsector 4",
   "org"          => "Org 1",
   "country"      => "Country 3",
-  "sex+targeted" => ["80", "95"],
+  "sex+targeted" => [80, 95],
   "adm1"         => "Region 4"}]
 ```
 
 
-More ways to use the reader:
+### What about Enumerable?
+
+Yes, every reader includes `Enumerable` and runs on `each`.
+Use `new` or `open` without a block
+to get the enumerator (iterator).
+Example:
+
+
+``` ruby
+csv = CsvHuman.new( <<TXT )      ## or use HXL.new
+  What,,,Who,Where,For whom,
+  Record,Sector/Cluster,Subsector,Organisation,Country,Males,Females,Subregion
+  ,#sector+en,#subsector,#org,#country,#sex+#targeted,#sex+#targeted,#adm1
+  001,WASH,Subsector 1,Org 1,Country 1,100,100,Region 1
+  002,Health,Subsector 2,Org 2,Country 2,,,Region 2
+  003,Education,Subsector 3,Org 3,Country 2,250,300,Region 3
+  004,WASH,Subsector 4,Org 1,Country 3,80,95,Region 4
+TXT )
+it  = csv.to_enum
+pp it.next  
+# => {"sector+en"    => "WASH",
+#     "subsector"    => "Subsector 1",
+#     "org"          => "Org 1",
+#     "country"      => "Country 1",
+#     "sex+targeted" => [100, 100],
+#     "adm1"         => "Region 1"}
+
+
+# -or-
+
+csv = CsvHuman.open( "./test.csv" )     # or use HXL.open
+it  = csv.to_enum
+pp it.next
+# => {"sector+en"    => "WASH",
+#     "subsector"    => "Subsector 1",
+#     "org"          => "Org 1",
+#     "country"      => "Country 1",
+#     "sex+targeted" => [100, 100],
+#     "adm1"         => "Region 1"}
+pp it.next
+# => {"sector+en"    => "Health",
+#     "subsector"    => "Subsector 2",
+#     "org"          => "Org 2",
+#     "country"      => "Country 2",
+#     "sex+targeted" => [nil, nil],
+#     "adm1"         => "Region 2"}
+```
+
+
+
+### More Ways to Use
 
 ``` ruby
 csv = CsvHuman.new( recs )
 csv.each do |rec|
   pp rec
 end
-
-pp csv.read
 
 
 CsvHuman.parse( recs ).each do |rec|
@@ -136,8 +184,6 @@ hxl.each do |rec|
   pp rec
 end
 
-pp hxl.read
-
 
 HXL.parse( recs ).each do |rec|
   pp rec
@@ -160,7 +206,87 @@ Note: More aliases for `CsvHuman`, `HXL`? Yes, you can use
 
 
 
-## Tag Helpers
+### What about symbol keys for hashes?
+
+Yes, you can use the `header_converter` keyword option.
+Use `:symbol` for (auto-)converting header tags (strings) to symbols.
+Note: the symbol converter will remove all hashtags (`#`) and spaces and
+will change the plus (`+`) to underscore (`_`)
+and remove all non-alphanumeric (e.g. `!?$%`) chars.
+
+Example:
+
+``` ruby
+txt =<<TXT
+What,,,Who,Where,For whom,
+Record,Sector/Cluster,Subsector,Organisation,Country,Males,Females,Subregion
+,#sector+en,#subsector,#org,#country,#sex+#targeted,#sex+#targeted,#adm1
+001,WASH,Subsector 1,Org 1,Country 1,100,100,Region 1
+002,Health,Subsector 2,Org 2,Country 2,,,Region 2
+003,Education,Subsector 3,Org 3,Country 2,250,300,Region 3
+004,WASH,Subsector 4,Org 1,Country 3,80,95,Region 4
+TXT
+
+pp CsvHuman.parse( txt, :header_converter => :symbol )      ## or use HXL.parse
+
+# -or-
+
+options = { :header_converter => :symbol }
+pp CsvHuman.parse( txt, options )  
+```
+
+resulting in:
+
+```
+[{:sector_en    => "WASH",
+  :subsector    => "Subsector 1",
+  :org          => "Org 1",
+  :country      => "Country 1",
+  :sex_targeted => [100, 100],
+  :adm1         => "Region 1"},
+# ...
+ {:sector_en    => "WASH",
+  :subsector    => "Subsector 4",
+  :org          => "Org 1",
+  :country      => "Country 3",
+  :sex_targeted => [80, 95],
+  :adm1         => "Region 4"}]
+```
+
+Built-in header converters include:
+
+| Converter    | Comments            |
+|--------------|---------------------|
+| `:none`      |   string key; uses "normalized" tag e.g. `"#adm1 +code"`  |
+| `:default`   |   string key; strips hashtags and spaces e.g. `"admin+code"`  |
+| `:symbol`    |   symbol key; strips hashtags and spaces and converts plus (`+`) to underscore (`_`) and removes all non-alphanumerics e.g. `:admin_code` |
+
+Or add your own converters. Example:
+
+``` ruby
+pp CsvHuman.parse( txt, header_converter: ->(h) { h.upcase } )
+```
+
+resulting in:
+
+``` ruby
+[{"#SECTOR +EN"    => "WASH",
+  "#SUBSECTOR"     => "Subsector 1",
+  "#ORG"           => "Org 1",
+  "#COUNTRY"       => "Country 1",
+  "#SEX +TARGETED" => [100, 100],
+  "#ADM1"          => "Region 1"},
+#  ...
+]
+```
+
+A custom converter is a method that gets the (normalized) header tag
+passed in (e.g. `#sector +en`) as a string
+and returns a string or symbol to use for the hash key in records.
+
+
+
+### Tag Helpers
 
 **Normalize**. Use `CsvHuman::Tag.normalize` to pretty print or normalize a tag.
 All parts get downcased (lowercased), all attributes sorted by a-to-z,

@@ -6,6 +6,7 @@ require 'minitest/autorun'
 
 
 ## our own code
+## require 'csvhuman/base'
 require 'csvhuman'
 
 
