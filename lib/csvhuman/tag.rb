@@ -61,7 +61,7 @@ class Tag
 
     if name == 'date'
        Date
-    elsif ['affected', 'inneed'].include?( name )
+    elsif ['affected', 'inneed', 'targeted', 'reached'].include?( name )
        Integer
     else
       ## check attributes
@@ -71,8 +71,18 @@ class Tag
         Integer
       elsif attributes.include?( 'date' )   ### todo/check: exists +date?
         Date
-      elsif attributes.include?( 'affected' ) ||
-            attributes.include?( 'targeted' )
+      elsif attributes.include?( 'killed' ) ||
+            attributes.include?( 'injured' ) ||
+            attributes.include?( 'infected' ) ||
+            attributes.include?( 'displaced' ) ||
+            attributes.include?( 'idps' ) ||
+            attributes.include?( 'refugees' ) ||
+            attributes.include?( 'abducted' ) ||
+            attributes.include?( 'threatened' ) ||
+            attributes.include?( 'affected' ) ||
+            attributes.include?( 'inneed' ) ||
+            attributes.include?( 'targeted' ) ||
+            attributes.include?( 'reached' )
         Integer
       else
         String   ## assume (default to) string

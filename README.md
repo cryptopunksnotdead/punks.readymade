@@ -237,14 +237,14 @@ pp CsvHuman.parse( txt, options )
 
 resulting in:
 
-```
+``` ruby
 [{:sector_en    => "WASH",
   :subsector    => "Subsector 1",
   :org          => "Org 1",
   :country      => "Country 1",
   :sex_targeted => [100, 100],
   :adm1         => "Region 1"},
-# ...
+ # ...
  {:sector_en    => "WASH",
   :subsector    => "Subsector 4",
   :org          => "Org 1",
@@ -276,11 +276,11 @@ resulting in:
   "#COUNTRY"       => "Country 1",
   "#SEX +TARGETED" => [100, 100],
   "#ADM1"          => "Region 1"},
-#  ...
+ # ...
 ]
 ```
 
-A custom converter is a method that gets the (normalized) header tag
+A custom header converter is a method that gets the (normalized) header tag
 passed in (e.g. `#sector +en`) as a string
 and returns a string or symbol to use for the hash key in records.
 
@@ -290,7 +290,7 @@ and returns a string or symbol to use for the hash key in records.
 
 **Normalize**. Use `CsvHuman::Tag.normalize` to pretty print or normalize a tag.
 All parts get downcased (lowercased), all attributes sorted by a-to-z,
-all extra or missing hashtags or pluses added or removed
+all extra or missing hashtags or pluses added or removed,
 all extra or missing spaces added or removed. Example:
 
 ``` ruby

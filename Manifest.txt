@@ -3,11 +3,14 @@ Manifest.txt
 README.md
 Rakefile
 lib/csvhuman.rb
+lib/csvhuman/base.rb
 lib/csvhuman/column.rb
+lib/csvhuman/converter.rb
 lib/csvhuman/reader.rb
 lib/csvhuman/tag.rb
 lib/csvhuman/version.rb
 test/data/test.csv
 test/helper.rb
+test/test_header_converter.rb
 test/test_reader.rb
 test/test_tags.rb
