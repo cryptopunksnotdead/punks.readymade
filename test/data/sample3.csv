@@ -2,7 +2,6 @@
 % sample from HXL tagging conventions (version 1.1)
 %  see http://hxlstandard.org/standard/1_1final/tagging/
 
-
 P-CODE 1,  P-CODE 2,  P-CODE 3
 #loc+code, #loc+code, #loc+code
 020503
