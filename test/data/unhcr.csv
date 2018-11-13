@@ -1,5 +1,6 @@
-"Extracted from the UNHCR Population Statistics Reference Database","United Nations High Commissioner for Refugees"
-"Date extracted: 2015-09-18 04:37:09 +02:00"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extracted from the UNHCR Population Statistics Reference Database - United Nations High Commissioner for Refugees
+%   Date extracted: 2015-09-18 04:37:09 +02:00
 
 Year,"Country / territory of asylum/residence",Origin,"Refugees (incl. refugee-like situations)","Asylum-seekers (pending cases)","Returned refugees","Internally displaced persons (IDPs)","Returned IDPs","Stateless persons","Others of concern","Total Population"
 "#date +year","#country +residence","#country +origin","#affected +refugees","#affected +asylum","#affected +returned_refugees","#affected +idps","#affected +returned_idps","#affected +stateless","#affected +others","#affected +total"
