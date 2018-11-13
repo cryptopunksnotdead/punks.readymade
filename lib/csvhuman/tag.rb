@@ -61,16 +61,22 @@ class Tag
 
     if name == 'date'
        Date
-    elsif ['affected', 'inneed', 'targeted', 'reached'].include?( name )
+    ## todo/fix: add more well-known names with num required!!!
+    elsif ['affected', 'inneed', 'targeted', 'reached', 'population'].include?( name )
        Integer
     else
       ## check attributes
       if attributes.nil? || attributes.empty?
         String  ## assume (default to) string
-      elsif attributes.include?( 'num' )
+      elsif attributes.include?( 'num' ) ||
+            attributes.include?( 'id')   ## assume id is (always) a rowid - why? why not?
         Integer
       elsif attributes.include?( 'date' )   ### todo/check: exists +date?
         Date
+      elsif name == 'geo' && (attributes.include?('lat') ||
+                              attributes.include?('lon') ||
+                              attributes.include?('elevation'))
+        Float
       elsif attributes.include?( 'killed' ) ||
             attributes.include?( 'injured' ) ||
             attributes.include?( 'infected' ) ||
@@ -151,11 +157,16 @@ class Tag
   def typecast( value )   ## use convert or call - why? why not?
     if @type == Integer
       conv_to_i( value )
+    elsif @type == Float
+      conv_to_f( value )
+    elsif @type == Date
+      conv_to_date( value )
     else   ## assume String
       # pass through as is
       value
     end
   end
+
 
 private
   def conv_to_i( value )
@@ -166,7 +177,25 @@ private
     end
   end
 
+  def conv_to_f( value )
+    if value.nil? || value.empty?
+      nil   ## return nil - why? why not?
+    else
+      ## todo/fix: add support for NaN, Inf, -Inf etc.
+      ##    how to deal with conversion errors (throw exception? ignore? NaN? why? why not?)
+      Float( value )
+    end
+  end
 
+  def conv_to_date( value )
+    if value.nil? || value.empty?
+      nil   ## return nil - why? why not?
+    else
+      ## todo/fix: add support for more formats
+      ##    how to deal with conversion errors (throw exception? ignore? why? why not?)
+      Date.strptime( value, "%Y-%m-%d" )
+    end
+  end
 end # class Tag
 
 

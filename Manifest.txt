@@ -9,8 +9,13 @@ lib/csvhuman/converter.rb
 lib/csvhuman/reader.rb
 lib/csvhuman/tag.rb
 lib/csvhuman/version.rb
+test/data/sample1.csv
+test/data/sample2.csv
+test/data/sample3.csv
+test/data/sample4.csv
 test/data/test.csv
 test/helper.rb
 test/test_header_converter.rb
 test/test_reader.rb
+test/test_samples.rb
 test/test_tags.rb
