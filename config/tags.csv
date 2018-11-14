@@ -1,8 +1,8 @@
-tag,type,since,category,description
-access,,1.1,Responses and other operations,"Accessiblity and constraints on access to a market, distribution point, facility, etc." 
-activity,,1.0, Responses and other operations,"A programme, project, or other activity. This hashtag applies to all levels; use the attributes +activity, +project, or +programme to distinguish different hierarchical levels."
-adm1,,1.0, Places,"Top-level subnational administrative area (e.g. a governorate in Syria)."
-adm2,,    1.0, Places,"Second-level subnational administrative area (e.g. a subdivision in Bangladesh)."
-adm3,,    1.0, Places,"Third-level subnational administrative area (e.g. a subdistrict in Afghanistan)."
-adm4,,    1.0, Places,"Fourth-level subnational administrative area (e.g. a barangay in the Philippines)."
-adm5,,    1.0, Places,"Fifth-level subnational administrative area (e.g. a ward of a city)."
+tag, type, since, category, description
+access,,   1.1, Responses and other operations,"Accessiblity and constraints on access to a market, distribution point, facility, etc."
+activity,, 1.0, Responses and other operations,"A programme, project, or other activity. This hashtag applies to all levels; use the attributes +activity, +project, or +programme to distinguish different hierarchical levels."
+adm1,    , 1.0, Places                        ,"Top-level subnational administrative area (e.g. a governorate in Syria)."
+adm2,    , 1.0, Places                        ,"Second-level subnational administrative area (e.g. a subdivision in Bangladesh)."
+adm3,    , 1.0, Places                        ,"Third-level subnational administrative area (e.g. a subdistrict in Afghanistan)."
+adm4,    , 1.0, Places                        ,"Fourth-level subnational administrative area (e.g. a barangay in the Philippines)."
+adm5,    , 1.0, Places                        ,"Fifth-level subnational administrative area (e.g. a ward of a city)."
