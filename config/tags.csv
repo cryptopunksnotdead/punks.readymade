@@ -38,3 +38,8 @@ region,           , 1.0, Places,"A broad, supra- or cross-national geographical 
 respondee,        , 1.1, Surveys and assessments,"Descriptive information, such as name, identifier, or traits, for a single respondee (person, household, etc.) in survey-style data."
 sector,           , 1.0, Responses and other operations,"A humanitarian cluster or sector."
 service,          , 1.1, Responses and other operations,"A service used or needed by an affected person, household, group, or population."
+severity,         , 1.0,"Crises, incidents, and events","Severity of the crisis or event."
+status,           , 1.0, Metadata,"Project/activity status description (such as ""planned"", ""active"", ""canceled"", or ""complete"")."
+subsector,        , 1.0, Responses and other operations,"A humanitarian subsector."
+targeted,   number, 1.0, Surveys and assessments,"Number of people or households targeted for humanitarian assistance. Subset of #inneed; superset of #reached."
+value,      number, 1.1, Cash and finance,"A monetary value, such as the price of goods in a market, a project budget, or the amount of cash transferred to beneficiaries. May be used together with #currency in financial or cash data."
