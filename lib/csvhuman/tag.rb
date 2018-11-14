@@ -57,53 +57,32 @@ class Tag
   end
 
 
-  def self.guess_type( name, attributes )
 
-    if name == 'date'
-       Date
-    ## todo/fix: add more well-known names with num required!!!
-    elsif ['affected', 'inneed', 'targeted', 'reached', 'population'].include?( name )
-       Integer
-    else
-      ## check attributes
-      if attributes.nil? || attributes.empty?
-        String  ## assume (default to) string
-      elsif attributes.include?( 'num' ) ||
-            attributes.include?( 'id')   ## assume id is (always) a rowid - why? why not?
-        Integer
-      elsif attributes.include?( 'date' )   ### todo/check: exists +date?
-        Date
-      elsif name == 'geo' && (attributes.include?('lat') ||
-                              attributes.include?('lon') ||
-                              attributes.include?('elevation'))
-        Float
-      elsif attributes.include?( 'killed' ) ||
-            attributes.include?( 'injured' ) ||
-            attributes.include?( 'infected' ) ||
-            attributes.include?( 'displaced' ) ||
-            attributes.include?( 'idps' ) ||
-            attributes.include?( 'refugees' ) ||
-            attributes.include?( 'abducted' ) ||
-            attributes.include?( 'threatened' ) ||
-            attributes.include?( 'affected' ) ||
-            attributes.include?( 'inneed' ) ||
-            attributes.include?( 'targeted' ) ||
-            attributes.include?( 'reached' )
-        Integer
-      else
-        String   ## assume (default to) string
-      end
-    end
-  end
-
-
-
-  def self.parse( value )
+  ## todo/check:  find a better name for optional types keyword/option - why? why not?
+  def self.parse( value, types: nil )
     parts = split( value )
 
     name       = parts[0]
     attributes = parts[1..-1]   ## todo/fix: check if nil (make it empty array [] always) - why? why not?
-    type       = guess_type( name, attributes )
+
+
+    ## fix!!!!
+    ##   move types up to parser itself (only one lookup for datafile)!!!
+
+    ## guess / map type
+    types = :default   if types.nil?
+
+    if types.is_a?( Proc )    ## allow/support "custom" mapping procs
+      guess_type = types
+    else  ## assume symbol (for lookup pre-built/known mapping procs)
+      guess_type = TYPE_MAPPINGS[ types ]
+      if guess_type.nil?
+        ## todo/check: issue warning only (and fallback to none/String) - why? why not?
+        raise ArgumentError, "missing type mapping >#{types.inspect}< for tag >#{name}<"
+      end
+    end
+
+    type       = guess_type.call( name, attributes )
 
     new( name, attributes, type )
   end
@@ -115,11 +94,38 @@ class Tag
   attr_reader :attributes   ## use attribs or something shorter - why? why not?
   attr_reader :type
 
+
   def initialize( name, attributes=nil, type=String )
     @name       = name
     ## sorted a-z - note: make sure attributes is [] NOT nil if empty - why? why not?
     @attributes = attributes || []
-    @type       = type         ## type class (defaults to String)
+    ## todo/check attributes:
+    ##  "extract" two-letter language codes e.g. en, etc. - why? why not?
+    ##  "extract" type codes e.g. num, date - why? why not?
+
+    ## type as
+    ##  - class (defaults to String) or
+    ##  - "custom" symbol (e.g. :geo, :geo_lat_lon,:geo_coords,:code,:id, etc.)
+    @type       = type
+
+    if @type == String    ## note: String gets passed through as-is 1:1 (no converter required)
+      @conv = nil
+    else
+      @conv = TYPE_CONVERTERS[ @type ]
+
+      if @conv.nil?
+        ## todo/check: use a different exception - why? why not?
+        ##  default to string (and warning only) - why? why not?
+        raise ArgumentError, "missing type converter >#{type.inspect}< for tag >#{to_s}<"
+      end
+    end
+  end
+
+
+  ## todo/check: rename to/use convert or call - why? why not?
+  def typecast( value )
+    ## note: if conv is nil/null - pass value through as is (1:1); used for Strings (by default)
+    @conv ?  @conv.call( value ) : value
   end
 
 
@@ -153,49 +159,6 @@ class Tag
     buf
   end
 
-
-  def typecast( value )   ## use convert or call - why? why not?
-    if @type == Integer
-      conv_to_i( value )
-    elsif @type == Float
-      conv_to_f( value )
-    elsif @type == Date
-      conv_to_date( value )
-    else   ## assume String
-      # pass through as is
-      value
-    end
-  end
-
-
-private
-  def conv_to_i( value )
-    if value.nil? || value.empty?
-      nil   ## return nil - why? why not?
-    else
-      Integer( value )
-    end
-  end
-
-  def conv_to_f( value )
-    if value.nil? || value.empty?
-      nil   ## return nil - why? why not?
-    else
-      ## todo/fix: add support for NaN, Inf, -Inf etc.
-      ##    how to deal with conversion errors (throw exception? ignore? NaN? why? why not?)
-      Float( value )
-    end
-  end
-
-  def conv_to_date( value )
-    if value.nil? || value.empty?
-      nil   ## return nil - why? why not?
-    else
-      ## todo/fix: add support for more formats
-      ##    how to deal with conversion errors (throw exception? ignore? why? why not?)
-      Date.strptime( value, "%Y-%m-%d" )
-    end
-  end
 end # class Tag
 
 
