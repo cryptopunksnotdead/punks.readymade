@@ -1,8 +1,8 @@
 # Humanitarian eXchangle Language (HXL) Tags
 
-[`#access`](#access) • 
-[`#activity`](#activity) • 
-[`#adm1`](#adm1) • 
+[`#access`](#access)
+[`#activity`](#activity)
+[`#adm1`](#adm1)
 `[adm2`](#adm2) • 
 `[adm3`](#adm3) • 
 `[adm4`](#adm4) • 
