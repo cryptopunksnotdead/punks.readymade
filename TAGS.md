@@ -1,8 +1,8 @@
 # Humanitarian eXchangle Language (HXL) Tags
 
-`[access`](#access) • 
-`[activity`](#activity) • 
-`[adm1`](#adm1) • 
+[`#access`](#access) • 
+[`#activity`](#activity) • 
+[`#adm1`](#adm1) • 
 `[adm2`](#adm2) • 
 `[adm3`](#adm3) • 
 `[adm4`](#adm4) • 
@@ -48,13 +48,13 @@
 
 ## (1) Places
 
-### adm1
+### `#adm1`
 
 Top-level subnational administrative area (e.g. a governorate in Syria). _Since 1.0_
 
 Attributes: `+code +dest +name +origin`
 
-### adm2
+### `#adm2`
 
 Second-level subnational administrative area (e.g. a subdivision in Bangladesh). _Since 1.0_
 
