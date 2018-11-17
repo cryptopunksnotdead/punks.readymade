@@ -232,11 +232,11 @@ end
 
 
 
-txt = File.open( "./attributes.txt", 'r:utf-8').read
+txt = File.open( "./script/pages/attributes.txt", 'r:utf-8').read
 attribs = parse_attribs( txt )
 pp attribs
 
-File.open( "./attributes.csv", 'w:utf-8') do |f|
+File.open( "./config/attributes.csv", 'w:utf-8') do |f|
  f.write ["attribute","since","category","tags","description"].join(",")
  f.write "\n"
  attribs.each do |attrib|
@@ -246,11 +246,11 @@ File.open( "./attributes.csv", 'w:utf-8') do |f|
 end
 
 
-txt = File.open( "./tags.txt", 'r:utf-8').read
+txt = File.open( "./script/pages/tags.txt", 'r:utf-8').read
 tags = parse_tags( txt )
 pp tags
 
-File.open( "./tags.csv", 'w:utf-8') do |f|
+File.open( "./config/tags.csv", 'w:utf-8') do |f|
  f.write ["tag", "type", "since", "category", "attributes", "description"].join(",")
  f.write "\n"
  tags.each do |tag|
