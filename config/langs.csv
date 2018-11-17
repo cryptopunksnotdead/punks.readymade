@@ -1,4 +1,12 @@
-code,name+en,name
-en,English,English
-de,German,Deutsch
-es,Spanish,Español
+code, name+en, name
+ar,	Arabic,
+en, English, English
+es, Spanish, Español
+de, German, Deutsch
+fa, Dari / Farsi / Persian,
+fr, French,
+ms,	Malay,
+ps,	Pashto,
+ru, Russian,	
+tl, Tagalog,
+ur, Urdu,
