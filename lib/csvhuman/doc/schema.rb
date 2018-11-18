@@ -68,6 +68,12 @@ def parse_attributes
 
       next_line = nil
     elsif (m=match_heading( line ))
+      ## note: new category ends attribute definition
+      if attrib
+        attribs << [attrib, version, category, tags.join( ' ' ), descr]
+        attrib = nil
+      end
+
       category = "(#{m[:level2]}) #{m[:title]}"
     elsif (m=match_attribute( line ))
       if attrib
@@ -76,6 +82,9 @@ def parse_attributes
 
       attrib    = m[:name]
       tags      = []
+      descr     = nil
+      version   = nil
+
       next_line = :descr  ## reset descr to nil - will auto-capture next line
     elsif (m=match_hashtag( line ))
       tags << "##{m[:name]}"
@@ -123,6 +132,12 @@ def parse_tags
 
       next_line = nil
     elsif (m=match_heading( line ))
+      ## note: new category ends tag definition
+      if tag
+        tags << [tag, type, version, category, attribs.join( ' ' ), descr]
+        tag = nil
+      end
+
       category = "(#{m[:level2]}) #{m[:title]}"
     elsif (m=match_type( line ))
       type = m[:type]
@@ -134,6 +149,9 @@ def parse_tags
       tag      = m[:name]
       attribs  = []
       type     = nil
+      descr    = nil
+      version  = nil
+
       next_line = :descr  ## reset descr to nil - will auto-capture next line
     elsif (m=match_attribute( line ))
       attribs << "+#{m[:name]}"

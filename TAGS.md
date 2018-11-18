@@ -96,13 +96,13 @@ Any general location, such as a village, camp, or clinic. _Since version 1.0_
 
 Attributes: `+code +dest +name +origin +type`
 
+## (2) People and households
+
 ### `#region`
 
 A broad, supra- or cross-national geographical region (e.g. Sahel, Horn of Africa, Central Asia, Caribbean). Not to be confused with "region" used as the name of a subnational area ([`#adm1`](#adm1)) in some countries. _Since version 1.0_
 
 Attributes: `+code +dest +name +origin`
-
-## (2) People and households
 
 ### `#affected`
 
@@ -146,6 +146,8 @@ Attributes: `+abducted +adolescents +adults +children +displaced +elderly +f +hh
 
 Descriptive information, such as name, identifier, or traits, for a single respondee (person, household, etc.) in survey-style data. _Since version 1.1_
 
+## (3) Responses and other operations
+
 ### `#targeted`
 
 Number of people or households targeted for humanitarian assistance. Subset of [`#inneed`](#inneed); superset of [`#reached`](#reached). _Since version 1.0_
@@ -153,8 +155,6 @@ Number of people or households targeted for humanitarian assistance. Subset of [
 Every value must be a **number**.
 
 Attributes: `+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +m +noncamp +refugees`
-
-## (3) Responses and other operations
 
 ### `#access`
 
@@ -234,13 +234,13 @@ A service used or needed by an affected person, household, group, or population.
 
 Attributes: `+code +name +provided +type +url +used`
 
+## (4) Cash and finance
+
 ### `#subsector`
 
 A humanitarian subsector. _Since version 1.0_
 
 Attributes: `+code +name +type`
-
-## (4) Cash and finance
 
 ### `#channel`
 
@@ -260,13 +260,13 @@ The means by which an aid activity is accomplished. For cash transfers, values m
 
 Attributes: `+code +name`
 
+## (5) Crises, incidents, and events
+
 ### `#value`
 
 A monetary value, such as the price of goods in a market, a project budget, or the amount of cash transferred to beneficiaries. May be used together with [`#currency`](#currency) in financial or cash data. _Since version 1.1_
 
 Every value must be a **number**.
-
-## (5) Crises, incidents, and events
 
 ### `#cause`
 
@@ -298,13 +298,13 @@ The impact of a crisis on a group or other entity. _Since version 1.0_
 
 Attributes: `+code +name +type`
 
+## (6) Metadata
+
 ### `#severity`
 
 Severity of the crisis or event. _Since version 1.0_
 
 Attributes: `+code +name +type`
-
-## (6) Metadata
 
 ### `#date`
 
