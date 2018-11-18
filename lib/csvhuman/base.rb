@@ -10,7 +10,8 @@ require 'csvhuman/column'
 require 'csvhuman/converter'
 require 'csvhuman/reader'
 
-
+require 'csvhuman/doc/helper.rb'
+require 'csvhuman/doc/schema.rb'
 
 
 # say hello
