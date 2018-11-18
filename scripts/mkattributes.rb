@@ -10,7 +10,7 @@ end
 
 
 ATTRIBUTE_RX = /
-               \#[a-z][a-z0-9]*
+               \+[a-z][a-z0-9_]*
              /x
 
 
@@ -18,7 +18,11 @@ def linkify_attributes( line )
   ## note: assumes +f etc. (that is, includes leading plus)
   line.gsub( ATTRIBUTE_RX ) do |attrib|
     puts "linkify attribute >#{attrib}<"
-    "[`#{attrib}`](##{attrib[1..-1]})"  ## note: cut-of leading + in intralink
+    if attrib.index( '_' )
+      "`#{attrib}`"    ## note: do NOT linkify custom attributes for now (if include underscore e.g. +age12_17 etc.)
+    else
+      "[`#{attrib}`](##{attrib[1..-1]})"  ## note: cut-of leading + in intralink
+    end
   end
 end
 

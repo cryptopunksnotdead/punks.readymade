@@ -7,14 +7,14 @@ adm5,,1.0,(1) Places,+code +dest +name +origin,Fifth-level subnational administr
 country,,1.0,(1) Places,+code +dest +name +origin,Country (often left implied in a dataset). Also sometimes known as admin level 0.
 geo,,1.0,(1) Places,+bounds +coord +elevation +lat +lon,"Geodetic geometry information (points, lines, shapes). Use for latitude and longitude, as well as bounds information."
 loc,,1.0,(1) Places,+code +dest +name +origin +type,"Any general location, such as a village, camp, or clinic."
-region,,1.0,(2) People and households,+code +dest +name +origin,"A broad, supra- or cross-national geographical region (e.g. Sahel, Horn of Africa, Central Asia, Caribbean). Not to be confused with ""region"" used as the name of a subnational area (#adm1) in some countries."
+region,,1.0,(1) Places,+code +dest +name +origin,"A broad, supra- or cross-national geographical region (e.g. Sahel, Horn of Africa, Central Asia, Caribbean). Not to be confused with ""region"" used as the name of a subnational area (#adm1) in some countries."
 affected,number,1.0,(2) People and households,+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +killed +m +noncamp +refugees,Number of people or households affected by an emergency. Subset of #population; superset of #inneed.
 beneficiary,,1.0,(2) People and households,+code +name +type,"General (non-numeric) information about a person or group meant to benefit from aid activities, e.g. ""lactating women""."
 inneed,number,1.0,(2) People and households,+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +m +noncamp +refugees,Number of people or households in need of humanitarian assistance. Subset of #affected; superset of #targeted.
 population,number,1.0,(2) People and households,+adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +m +noncamp +refugees,"General population number for an area or location, regardless of their specific humanitarian needs."
 reached,number,1.0,(2) People and households,+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +m +noncamp +refugees,Number of people or households reached with humanitarian assistance. Subset of #targeted.
 respondee,,1.1,(2) People and households,,"Descriptive information, such as name, identifier, or traits, for a single respondee (person, household, etc.) in survey-style data."
-targeted,number,1.0,(3) Responses and other operations,+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +m +noncamp +refugees,Number of people or households targeted for humanitarian assistance. Subset of #inneed; superset of #reached.
+targeted,number,1.0,(2) People and households,+abducted +adolescents +adults +children +displaced +elderly +f +hh +i +idps +incamp +ind +infants +infected +injured +m +noncamp +refugees,Number of people or households targeted for humanitarian assistance. Subset of #inneed; superset of #reached.
 access,,1.1,(3) Responses and other operations,+type,"Accessiblity and constraints on access to a market, distribution point, facility, etc."
 activity,,1.0,(3) Responses and other operations,+activity +code +name +programme +project +type +url,"A programme, project, or other activity. This hashtag applies to all levels; use the attributes +activity, +project, or +programme to distinguish different hierarchical levels."
 capacity,,1.0,(3) Responses and other operations,+num +type,"The response capacity of the entity being described (e.g. ""25 beds"")."
@@ -28,17 +28,17 @@ org,,1.0,(3) Responses and other operations,+code +funder +impl +name +prog +typ
 output,,1.0,(3) Responses and other operations,+code +name +num +type,"An output indicator (e.g. ""number of water-purification kits distributed""). A more-specific alternative to #indicator, especially for 3W-style activity reports."
 sector,,1.0,(3) Responses and other operations,+cluster +code +name +type,A humanitarian cluster or sector.
 service,,1.1,(3) Responses and other operations,+code +name +provided +type +url +used,"A service used or needed by an affected person, household, group, or population."
-subsector,,1.0,(4) Cash and finance,+code +name +type,A humanitarian subsector.
+subsector,,1.0,(3) Responses and other operations,+code +name +type,A humanitarian subsector.
 channel,,1.1,(4) Cash and finance,+code +name,The detailed method of delivering aid (e.g. smartcard vs mobile transfer). More specific than #modality.
 currency,,1.1,(4) Cash and finance,+code,"Name or ISO 4217 currency code for all financial #value cells in the row (e.g. ""EUR""). Typically used together with #value in financial or cash data."
 modality,,1.1,(4) Cash and finance,+code +name,"The means by which an aid activity is accomplished. For cash transfers, values might include ""cash"", ""vouchers"", ""in-kind"", etc. May also be used for other types of modalities in other contexts."
-value,number,1.1,"(5) Crises, incidents, and events",,"A monetary value, such as the price of goods in a market, a project budget, or the amount of cash transferred to beneficiaries. May be used together with #currency in financial or cash data."
+value,number,1.1,(4) Cash and finance,,"A monetary value, such as the price of goods in a market, a project budget, or the amount of cash transferred to beneficiaries. May be used together with #currency in financial or cash data."
 cause,,1.0,"(5) Crises, incidents, and events",+code +name +type,"The cause of an event, crisis, etc."
 crisis,,1.0,"(5) Crises, incidents, and events",+code +name +type,A humanitarian emergency.
 event,,1.0,"(5) Crises, incidents, and events",+code +name +type,"An individual event or incident within a crisis/emergency, such as a (localised) flood, bridge collapse, or conflict."
 group,,1.0,"(5) Crises, incidents, and events",+code +name +type,"A non-humanitarian group (of any type) related to humanitarian crisis (e.g., a paramilitary group) Use #org instead for a humanitarian organisation such as an NGO, contributing to the humanitarian response."
 impact,,1.0,"(5) Crises, incidents, and events",+code +name +type,The impact of a crisis on a group or other entity.
-severity,,1.0,(6) Metadata,+code +name +type,Severity of the crisis or event.
+severity,,1.0,"(5) Crises, incidents, and events",+code +name +type,Severity of the crisis or event.
 date,date,1.0,(6) Metadata,+approved +canceled +converted +end +occurred +reported +start,"Date related to the data in the record applies. Preferred format is ISO 8610 (e.g. ""2015-06-01"", ""2015-Q1"", etc.)"
 description,,1.0,(6) Metadata,+type,Long description for a data record.
 meta,,1.0,(6) Metadata,+id +source +url,Metadata about a row.

@@ -59,65 +59,65 @@
 
 ### `+adolescents`
 
-Adolescents, loosely defined (precise age range varies); may overlap +children and +adult. You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "+adolescents +age12_17". _Since version 1.0_
+Adolescents, loosely defined (precise age range varies); may overlap [`+children`](#children) and [`+adult`](#adult). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "[`+adolescents`](#adolescents) `+age12_17`". _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+adults`
 
-Adults, loosely defined (precise age range varies); may overlap +adolescents and +elderly. You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "+adults +age18_64". _Since version 1.0_
+Adults, loosely defined (precise age range varies); may overlap [`+adolescents`](#adolescents) and [`+elderly`](#elderly). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "[`+adults`](#adults) `+age18_64`". _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+children`
 
-The associated hashtag applies to non-adults, loosely defined (precise age range varies; may overlap +infants and +adolescents). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "+children +age3_11". _Since version 1.0_
+The associated hashtag applies to non-adults, loosely defined (precise age range varies; may overlap [`+infants`](#infants) and [`+adolescents`](#adolescents)). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "[`+children`](#children) `+age3_11`". _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+elderly`
 
-Elderly people, loosely defined (precise age range varies). May overlap +adults. You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "+elderly +age65plus". _Since version 1.0_
+Elderly people, loosely defined (precise age range varies). May overlap [`+adults`](#adults). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "[`+elderly`](#elderly) [`+age65plus`](#age65plus)". _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+f`
 
-Female people. See also +m and +i. _Since version 1.0_
+Female people. See also [`+m`](#m) and [`+i`](#i). _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+hh`
 
-Households (vs +ind for individual people). The exact definition of "household" may vary among aid organisations. _Since version 1.1_
+Households (vs [`+ind`](#ind) for individual people). The exact definition of "household" may vary among aid organisations. _Since version 1.1_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+i`
 
-Intersex or non-gender-binary people. Use this attribute for any groups who do not identify as male (+m) or female (+f). _Since version 1.0_
+Intersex or non-gender-binary people. Use this attribute for any groups who do not identify as male ([`+m`](#m)) or female ([`+f`](#f)). _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+ind`
 
-Individual people (vs +hh for households). _Since version 1.1_
+Individual people (vs [`+hh`](#hh) for households). _Since version 1.1_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+infants`
 
-Infant children, loosely defined (precise age range varies; may overlap +children). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "+infants +age0_2". _Since version 1.0_
+Infant children, loosely defined (precise age range varies; may overlap [`+children`](#children)). You can optionally create custom attributes in addition to this to add precise age ranges, e.g. "[`+infants`](#infants) `+age0_2`". _Since version 1.0_
+
+Tags: `#affected #inneed #population #reached #targeted`
+
+### `+m`
+
+Male people. See also [`+f`](#f) and [`+i`](#i). _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ## (2) Organisation and activity attributes
-
-### `+m`
-
-Male people. See also +f and +i. _Since version 1.0_
-
-Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+activity`
 
@@ -163,17 +163,17 @@ Tags: `#activity`
 
 ### `+provided`
 
-Refers to a [`#service`](#service), [`#item`](#item), etc. that has been provided to people in need. _Since version 1.1_
+Refers to a #service, #item, etc. that has been provided to people in need. _Since version 1.1_
+
+Tags: `#item #service`
+
+### `+used`
+
+Refers to a #service, #item, etc. that affected people have actually consumed or otherwise taken advantage of. _Since version 1.1_
 
 Tags: `#item #service`
 
 ## (3) Classification attributes
-
-### `+used`
-
-Refers to a [`#service`](#service), [`#item`](#item), etc. that affected people have actually consumed or otherwise taken advantage of. _Since version 1.1_
-
-Tags: `#item #service`
 
 ### `+code`
 
@@ -181,13 +181,13 @@ A unique, machine-readable code. _Since version 1.0_
 
 Tags: `#activity #adm1 #adm2 #adm3 #adm4 #adm5 #beneficiary #cause #channel #country #crisis #currency #event #group #impact #indicator #item #loc #modality #need #org #output #region #sector #service #severity #status #subsector`
 
-## (4) Geographical attributes
-
 ### `+type`
 
-Types or categories. Use with [`#org`](#org), [`#loc`](#loc), [`#indicator`](#indicator), etc to provide classification information. _Since version 1.0_
+Types or categories. Use with #org, #loc, #indicator, etc to provide classification information. _Since version 1.0_
 
 Tags: `#access #activity #beneficiary #capacity #cause #contact #crisis #description #event #frequency #group #impact #indicator #item #loc #need #operations #org #output #sector #service #severity #subsector`
+
+## (4) Geographical attributes
 
 ### `+bounds`
 
@@ -197,7 +197,7 @@ Tags: `#geo`
 
 ### `+coord`
 
-Geodetic coordinates (lat+lon together). _Since version 1.0_
+Geodetic coordinates (`lat+lon` together). _Since version 1.0_
 
 Tags: `#geo`
 
@@ -225,13 +225,13 @@ Longitude (decimal degrees preferred). _Since version 1.0_
 
 Tags: `#geo`
 
-## (5) Date attributes
-
 ### `+origin`
 
 The data describes places of origin (intended or actual), e.g. the country of origin for displaced people. _Since version 1.1_
 
 Tags: `#adm1 #adm2 #adm3 #adm4 #adm5 #country #loc #region`
+
+## (5) Date attributes
 
 ### `+approved`
 
@@ -241,7 +241,7 @@ Tags: `#date`
 
 ### `+canceled`
 
-Date or time when something (e.g. an [`#activity`](#activity)) was canceled. _Since version 1.0_
+Date or time when something (e.g. an #activity) was canceled. _Since version 1.0_
 
 Tags: `#date`
 
@@ -269,13 +269,13 @@ Date or time when the information was reported. _Since version 1.0_
 
 Tags: `#date`
 
-## (6) Impact attributes
-
 ### `+start`
 
 Date or time when something started or will start. _Since version 1.0_
 
 Tags: `#date`
+
+## (6) Impact attributes
 
 ### `+abducted`
 
@@ -285,13 +285,13 @@ Tags: `#affected #inneed #reached #targeted`
 
 ### `+displaced`
 
-Displaced people or households. Refers to all types of displacement: use +idps or +refugees to be more specific. _Since version 1.0_
+Displaced people or households. Refers to all types of displacement: use [`+idps`](#idps) or [`+refugees`](#refugees) to be more specific. _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
 ### `+idps`
 
-Internally-displaced people or households. More specific than +displaced. _Since version 1.0_
+Internally-displaced people or households. More specific than [`+displaced`](#displaced). _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
@@ -325,13 +325,13 @@ Not located in camps. _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
 
-## (7) General attributes
-
 ### `+refugees`
 
-Refugee people or households. More specific than +displaced. _Since version 1.0_
+Refugee people or households. More specific than [`+displaced`](#displaced). _Since version 1.0_
 
 Tags: `#affected #inneed #population #reached #targeted`
+
+## (7) General attributes
 
 ### `+email`
 
@@ -341,7 +341,7 @@ Tags: `#contact`
 
 ### `+id`
 
-Use with [`#meta`](#meta) to provide internal identifiers for data records. _Since version 1.1_
+Use with #meta to provide internal identifiers for data records. _Since version 1.1_
 
 Tags: `#meta`
 
@@ -363,7 +363,7 @@ Tags: `#capacity #indicator #output`
 
 ### `+phone`
 
-The data consists of [`#contact`](#contact) phone numbers. _Since version 1.0_
+The data consists of #contact phone numbers. _Since version 1.0_
 
 Tags: `#contact`
 
@@ -381,7 +381,6 @@ Tags: `#indicator`
 
 ### `+url`
 
-The data consists of web links related to the main hashtag (e.g. for an [`#org`](#org), [`#service`](#service), [`#activity`](#activity), [`#loc`](#loc), etc). _Since version 1.0_
+The data consists of web links related to the main hashtag (e.g. for an #org, #service, #activity, #loc, etc). _Since version 1.0_
 
 Tags: `#activity #contact #meta #org #service`
-
