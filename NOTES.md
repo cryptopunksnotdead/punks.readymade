@@ -8,6 +8,13 @@
 - [ ] header converter for symbols - turn `+` into `_x_` or `_I_` or into `$` - why? why not? (check if `$` supported in ruby inline? - no, it's not possible)
 
 
+## Examples
+
+Add more .csv examples with hxl tags, see <https://tools.humdata.org/examples/hxl/>
+
+
+
+
 
 
 ### Use `$` in symbol for `+`

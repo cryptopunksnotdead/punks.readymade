@@ -15,5 +15,14 @@ def test_ebola
   pp recs
 end
 
+def test_phl_haima
+  recs = CsvHuman.read( "#{CsvHuman.test_data_dir}/hdx/phl_haima_houses_damaged.csv" )
+  pp recs
+end
+
+def test_zika_cases
+  recs = CsvHuman.read( "#{CsvHuman.test_data_dir}/hdx/zika_cases.csv" )
+  pp recs
+end
 
 end # class TestHdxSamples

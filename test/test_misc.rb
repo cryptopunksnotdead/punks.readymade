@@ -20,5 +20,9 @@ def test_unhcr
   pp recs
 end
 
+def test_ebola
+  recs = CsvHuman.read( "#{CsvHuman.test_data_dir}/ebola.csv" )
+  pp recs
+end
 
 end # class TestMisc
