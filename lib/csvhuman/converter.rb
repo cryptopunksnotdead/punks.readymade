@@ -106,7 +106,14 @@ def self.convert_to_date( value )
   else
     ## todo/fix: add support for more formats
     ##    how to deal with conversion errors (throw exception? ignore? why? why not?)
-    Date.strptime( value, "%Y-%m-%d" )
+    if value =~ /\d{4}-\d{1,2}-\d{1,2}/    ### todo: check if 2014-1-9 works for strptime too (leading zero rquired)?
+      Date.strptime( value, "%Y-%m-%d" )    # 2014-11-09
+    elsif value =~ /\d{1,2}\/\d{1,2}\/\d{4}/
+      Date.strptime( value, "%d/%m/%Y" )    # 09/11/2014
+    else
+      ## todo/fix: throw argument/value error - why? why not
+      nil
+    end
   end
 end
 

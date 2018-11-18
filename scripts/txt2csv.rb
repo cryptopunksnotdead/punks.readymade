@@ -232,7 +232,7 @@ end
 
 
 
-txt = File.open( "./script/pages/attributes.txt", 'r:utf-8').read
+txt = File.open( "./scripts/pages/attributes.txt", 'r:utf-8').read
 attribs = parse_attribs( txt )
 pp attribs
 
@@ -246,7 +246,7 @@ File.open( "./config/attributes.csv", 'w:utf-8') do |f|
 end
 
 
-txt = File.open( "./script/pages/tags.txt", 'r:utf-8').read
+txt = File.open( "./scripts/pages/tags.txt", 'r:utf-8').read
 tags = parse_tags( txt )
 pp tags
 
