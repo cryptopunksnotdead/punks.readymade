@@ -13,6 +13,19 @@ ATTRIBUTE_RX = /
                \+[a-z][a-z0-9_]*
              /x
 
+HASHTAG_RX = /
+               \#[a-z][a-z0-9]+
+             /x
+
+
+
+def linkify_hashtags( line, page: '' )
+  ## note: assumes #adm1 etc. (that is, includes leading hashtag)
+  line.gsub( HASHTAG_RX ) do |hashtag|
+    puts "linkify hashtag >#{hashtag}<"
+    "[`#{hashtag}`](#{page}#{hashtag})"
+  end
+end
 
 def linkify_attributes( line )
   ## note: assumes +f etc. (that is, includes leading plus)
@@ -56,10 +69,12 @@ def build_summary( attributes )
     end
 
     buf << "### `+#{attribute['attribute']}`\n\n"
-    buf << "#{linkify_attributes(attribute['description'])} _Since version #{attribute['since']}_\n\n"
+    buf << "#{linkify_attributes(attribute['description'])}"
+    buf << " "
+    buf << "_Since version #{attribute['since']}_\n\n"
 
     unless attribute['tags'].empty?
-      buf << "Tags: `#{attribute['tags']}`\n\n"
+      buf << "Tags: #{linkify_hashtags(attribute['tags'], page: 'TAGS.md')}\n\n"
     end
 
 
@@ -68,6 +83,8 @@ def build_summary( attributes )
 
   buf
 end
+
+
 
 
 ## pp Csv.read( "./config/attributes.csv" )

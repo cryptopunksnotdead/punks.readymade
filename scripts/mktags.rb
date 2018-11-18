@@ -9,10 +9,13 @@ def linkify_tag( tag )
 end
 
 
+ATTRIBUTE_RX = /
+               \+[a-z][a-z0-9_]*
+             /x
+
 HASHTAG_RX = /
                \#[a-z][a-z0-9]+
              /x
-
 
 def linkify_hashtags( line )
   ## note: assumes #adm1 etc. (that is, includes leading hashtag)
@@ -21,6 +24,19 @@ def linkify_hashtags( line )
     "[`#{hashtag}`](#{hashtag})"
   end
 end
+
+def linkify_attributes( line, page: '' )
+  ## note: assumes +f etc. (that is, includes leading plus)
+  line.gsub( ATTRIBUTE_RX ) do |attrib|
+    puts "linkify attribute >#{attrib}<"
+    if attrib.index( '_' )
+      "`#{attrib}`"    ## note: do NOT linkify custom attributes for now (if include underscore e.g. +age12_17 etc.)
+    else
+      "[`#{attrib}`](#{page}##{attrib[1..-1]})"  ## note: cut-of leading + in intralink
+    end
+  end
+end
+
 
 
 
@@ -52,14 +68,16 @@ def build_summary( tags )
     end
 
     buf << "### `##{tag['tag']}`\n\n"
-    buf << "#{linkify_hashtags(tag['description'])} _Since version #{tag['since']}_\n\n"
+    buf << "#{linkify_hashtags(tag['description'])}"
+    buf << " "
+    buf << "_Since version #{tag['since']}_\n\n"
 
     unless tag['type'].empty?
       buf << "Every value must be a **#{tag['type']}**.\n\n"
     end
 
     unless tag['attributes'].empty?
-      buf << "Attributes: `#{tag['attributes']}`\n\n"
+      buf << "Attributes: #{linkify_attributes(tag['attributes'], page: 'ATTRIBUTES.md')}\n\n"
     end
 
 
