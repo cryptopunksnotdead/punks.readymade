@@ -4,12 +4,13 @@
 
 
 Yes, you can!  Right-click and save (to download) the pixel punks
-one-by-one in the original 24×24 format. [**Browse the 4x page »**](https://cryptopunksnotdead.github.io/punks.readymade/))
+one-by-one in the original 24×24 format. [**Browse the 4x page »**](https://cryptopunksnotdead.github.io/punks.readymade/)
 
 
 
 
-![](readymades.png)
+<a href='https://cryptopunksnotdead.github.io/punks.readymade/'><img src='readymades.png'></a>
+
 
 
 
