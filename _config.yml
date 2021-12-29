@@ -1,0 +1,9 @@
+
+##
+# check if a setting is required to make index.html
+#   the default (and NOT README.md)
+
+
+exclude:
+- README.md
+- LICENSE.md
